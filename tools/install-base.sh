@@ -2,8 +2,8 @@
 
 rm -f install-tl-unx.tar.gz texlive.profile
 echo "Downloading install-tl-unx.tar.gz to ${PWD} ..."
-TLURL="http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz"
-PRURL="https://github.com/yihui/tinytex/raw/master/tools/texlive.profile"
+TLURL="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz"
+PRURL="https://github.com/skiyer/tinytex/raw/master/tools/texlive.profile"
 if [ $(uname) = 'Darwin' ]; then
   curl -LO $TLURL
   curl -LO $PRURL
@@ -14,8 +14,8 @@ else
   # /usr/local/bin unless this script is invoked with the argument '--admin'
   # (e.g., users want to make LaTeX binaries available system-wide)
   if [ "$1" != '--admin' ]; then
-    mkdir -p $HOME/bin
-    echo "tlpdbopt_sys_bin ${HOME}/bin" >> texlive.profile
+    mkdir -p $HOME/.local/bin
+    echo "tlpdbopt_sys_bin ${HOME}/.local/bin" >> texlive.profile
   fi
 fi
 tar -xzf install-tl-unx.tar.gz
@@ -35,4 +35,5 @@ if [ "$3" != '' ]; then
   # test if the repository is accessible; if not, set the default CTAN repo
   ./tlmgr update --list || ./tlmgr option repository ctan
 fi
+./tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
 ./tlmgr install latex-bin luatex xetex
