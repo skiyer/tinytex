@@ -1,0 +1,10 @@
+environment:
+  PATH: "%APPDATA%\\TinyTeX\\bin\\win32;%PATH%"
+
+build_script:
+  - echo | tools\install-windows.bat
+
+test_script:
+  - tlmgr --version
+  - pdflatex --version
+  - xelatex --version
