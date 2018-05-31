@@ -35,3 +35,5 @@ algorithm2e
 ifoddpage
 relsize
 dvisvgm
+dvipng
+ulem
